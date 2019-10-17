@@ -22,8 +22,8 @@ public class Admin1Agent extends Agent {
         
         this.addBehaviour(new CyclicBehaviour(){
         //déclaration des variables avant d'entrer dans l'action de cyclic
-        double some1=0;
-        double some2=0;
+        double somme1=0;
+        double somme2=0;
         double moy1;
         double moy2;
         @Override
@@ -32,14 +32,24 @@ public class Admin1Agent extends Agent {
            ACLMessage msg = receive();
            if(msg!=null){
                if(msg.getOntology().equals("module1")){// verification par rapport au module1 
+                   
                String[] tmp = null; // le contenu du message est un tableau !
                      try {
                          tmp = (String[]) msg.getContentObject();
+                         double val1=Double.parseDouble(tmp[0]);
+                         double val2=Double.parseDouble(tmp[1]);
+                         
                          /*ICI donc tmp[0] est note 1 et tmp[1] est note 2*/
-                      
+                         
+                         System.out.println("la note recu est: " + val1 +" et"+ val2);  
                          
                          /* ICI les instructions pour le calcule de la somme des deux notes après la conversion en double plus le calcule de la moyenne 1*/
-                                            
+                         //double val1=Double.valueOf(tmp[0]);
+                         //double val2=Double.valueOf(tmp[1]);
+                         somme1=val1+val2;
+                         moy1= somme1/2;                
+                         
+                         
                          /*une fois la moyenne1 du module 1 est calculée, il doit être envoyé à admin2 avec l'ontologie moy1*/
                          /*ICI 5 intstructions pour définir, donner l'agent recepteur, donner l'ontologie, le cotenu, et l'envoie du message*/
                      } 

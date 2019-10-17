@@ -39,6 +39,50 @@ public class Starting_code_TP1Container {
             Logger.getLogger(Starting_code_TP1Container.class.getName()).log(Level.SEVERE, null, ex); 
         }
         
+        
+         //Création d'un container personnel
+        try {
+            //Créer le profil d'un nouveau container personnel appelé 'Fils' en local
+            ProfileImpl profileImpl2 = new ProfileImpl();
+            profileImpl2.setParameter(ProfileImpl.CONTAINER_NAME, 
+                       
+                       "profs");
+            profileImpl2.setParameter(ProfileImpl.MAIN_HOST, "localhost");
+            //Créer le nouveau container 'Fils'
+            AgentContainer agentContainer2 = runtime.createAgentContainer(profileImpl2);
+            //Créer un 1er agent appartenant au container 'Fils'
+            
+            AgentController agentController1 = agentContainer2.createNewAgent("Prof1", Prof1Agent.class.getName(), new Object[]{});
+            agentController1.start();
+            //Créer un 2er agent appartenant au container 'Fils'
+            AgentController agentController2 = agentContainer2.createNewAgent("Prof2", Prof2Agent.class.getName(), new Object[]{});
+            agentController2.start();
+        }
+        catch (ControllerException ex){
+            ex.printStackTrace();
+        }
+        
+        try {
+            //Créer le profil d'un nouveau container personnel appelé 'Fils' en local
+            ProfileImpl profileImpl2 = new ProfileImpl();
+                       
+            profileImpl2.setParameter(ProfileImpl.CONTAINER_NAME, "Administration");
+            profileImpl2.setParameter(ProfileImpl.MAIN_HOST, "localhost");
+            //Créer le nouveau container 'Fils'
+            AgentContainer agentContainer2 = runtime.createAgentContainer(profileImpl2);
+            //Créer un 1er agent appartenant au container 'Fils'
+            
+            AgentController agentController1 = agentContainer2.createNewAgent("Admin1Agent", Admin1Agent.class.getName(), new Object[]{});
+            agentController1.start();
+            //Créer un 2er agent appartenant au container 'Fils'
+            AgentController agentController2 = agentContainer2.createNewAgent("Admin2Agent", Admin2Agent.class.getName(), new Object[]{});
+            agentController2.start();
+        }
+        catch (ControllerException ex){
+            ex.printStackTrace();
+        }
+        
+        
       /*
         try {
         

@@ -37,7 +37,13 @@ public class Prof1Agent extends GuiAgent{//Cet agent est lié à une interface, 
                 aclMsg.addReceiver(new AID(Agent,AID.ISLOCALNAME));
                 
              try {//envoie des deux notes à admin2 avec l'ontologie 'module1'
-                 aclMsg.setContentObject(new String[]{note1,note2});
+                
+                ACLMessage message = new ACLMessage(ACLMessage.INFORM);
+                message.addReceiver(new AID("Admin1Agent",AID.ISLOCALNAME));
+                aclMsg.setContentObject(new String[]{note1,note2});
+                message.setOntology("module1");
+                send(message);
+            
                
                  /**2 instructions ici pour définir l'ontologie de aclMsg et de l'envoyer**/
                 
